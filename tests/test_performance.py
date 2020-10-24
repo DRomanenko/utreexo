@@ -54,6 +54,7 @@ class PerformanceTests(BaseTest):
         plt.plot(x, y2, '--', label='10 initial capacity')
         plt.plot(x, y3, '-.', label='50 initial capacity')
         plt.plot(x, y4, ':', label='80 initial capacity')
+        plt.legend()
         plt.xlabel("operations")
         plt.ylabel("ms")
         plt.show()

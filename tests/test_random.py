@@ -11,8 +11,8 @@ class RandomTests(BaseTest):
     def test_10000_random_operations(self):
         self.n_random_operations(10000)
 
-    def test_100000_random_operations(self):
-        self.n_random_operations(100000)
+    def test_50000_random_operations(self):
+        self.n_random_operations(50000)
 
 
 
