@@ -3,4 +3,3 @@
 * [Tests](/tests/)
 * [Implementation](/dynamic_accumulator/)
 * [Utils](/utils/)
-* [Alternative implementation](/cpp/)
