@@ -188,4 +188,3 @@ class DynamicAccumulator:
             return DynamicAccumulator.parent(element, neighbour.get_value())
         else:
             return DynamicAccumulator.parent(neighbour.get_value(), element)
-

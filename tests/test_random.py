@@ -13,6 +13,3 @@ class RandomTests(BaseTest):
 
     def test_50000_random_operations(self):
         self.n_random_operations(50000)
-
-
-

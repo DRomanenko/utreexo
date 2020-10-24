@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 
 class PerformanceTests(BaseTest):
     def test_analyze_random(self):
-        x = range(1, 100002, 5000)
+        x = range(1, 10002, 500)
         y1, y2, y3, y4 = [], [], [], []
         for i in x:
             nm = NeighboursMap()
@@ -27,7 +27,7 @@ class PerformanceTests(BaseTest):
         self.draw_plot('Random operations', x, y1, y2, y3, y4)
 
     def test_analyze_adds_and_removes(self):
-        x = range(1, 100002, 5000)
+        x = range(1, 10002, 500)
         y1, y2, y3, y4 = [], [], [], []
         for i in x:
             nm = NeighboursMap()
@@ -48,7 +48,8 @@ class PerformanceTests(BaseTest):
 
         self.draw_plot('Sequential operations', x, y1, y2, y3, y4)
 
-    def draw_plot(self, title, x, y1, y2, y3, y4):
+    @staticmethod
+    def draw_plot(title, x, y1, y2, y3, y4):
         plt.title(title)
         plt.plot(x, y1, '-', label='1 initial capacity')
         plt.plot(x, y2, '--', label='10 initial capacity')
