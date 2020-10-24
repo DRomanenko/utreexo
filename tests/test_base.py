@@ -19,13 +19,17 @@ class BaseTest(TestCase):
         start_time = time.time()
         for i in range(n):
             start_iteration_time = time.time()
-            op = random.randrange(0, 3)
+            op = random.randrange(0, 2)
             if op == 0:
                 utxo = self.generate_utxo()
-                if utxo in s:
+                if utxo.get_data() in s:
                     not_algorithm_time += (time.time() - start_iteration_time)
                     continue
-                s.add(utxo)
+
+                set_time = time.time()
+                s.add(utxo.get_data())
+                not_algorithm_time += (time.time() - set_time)
+
                 da.add_one(utxo)
             elif op == 1:
                 if len(s) == 0:
@@ -33,18 +37,10 @@ class BaseTest(TestCase):
                     continue
 
                 start_generating_proof = time.time()
-                proof = nm.get_proof(s.pop())
+                proof = nm.get_proof(Hash(s.pop()))
                 not_algorithm_time += (time.time() - start_generating_proof)
 
                 da.delete_one(proof)
-            else:
-                utxo = self.generate_utxo()
-
-                start_generating_proof = time.time()
-                proof = nm.get_proof(utxo)
-                not_algorithm_time += (time.time() - start_generating_proof)
-
-                self.assertEquals(utxo in s, da.verify(proof))
 
         return time.time() - start_time - not_algorithm_time
 
@@ -62,7 +58,11 @@ class BaseTest(TestCase):
             if utxo in s:
                 not_algorithm_time += (time.time() - start_iteration_time)
                 continue
+
+            set_time = time.time()
             s.add(utxo)
+            not_algorithm_time += (time.time() - set_time)
+
             da.add_one(utxo)
 
         for i in range(n // 2):
